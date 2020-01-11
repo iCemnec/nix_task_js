@@ -74,3 +74,15 @@ window.onload = function () {
     document.getElementById('maxLanguage').textContent = JSON.stringify(maxLangCount);
     document.getElementById('countPerson').textContent = JSON.stringify(countSex);
 };
+
+function checkAvgLength() {
+    let text = textForCheck.value;
+    let temp = text.split(/[.,\/ -:;<>'"{}*\n]/).filter((el) => el);
+
+    let avgWord = temp.reduce(
+        (accum, currentValue) => accum + currentValue.length, 0
+    ) / temp.length;
+
+    avgText.textContent = `Средняя длина слова: ${avgWord}`;
+    return avgWord;
+}
