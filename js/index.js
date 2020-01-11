@@ -77,12 +77,16 @@ window.onload = function () {
 
 function checkAvgLength() {
     let text = textForCheck.value;
-    let temp = text.split(/[.,\/ -:;<>'"{}*\n]/).filter((el) => el);
+    if (text) {
+        let temp = text.split(/[.,\/ -:;<>'"{}*\n]/).filter((el) => el);
 
-    let avgWord = temp.reduce(
-        (accum, currentValue) => accum + currentValue.length, 0
-    ) / temp.length;
+        let avgWord = temp.reduce(
+            (accum, currentValue) => accum + currentValue.length, 0
+        ) / temp.length;
 
-    avgText.textContent = `Средняя длина слова: ${avgWord}`;
+        avgText.textContent = `Средняя длина слова: ${avgWord}`;
+    } else {
+        avgText.textContent = 'Введите текст в поле выше.';
+    }
     return avgWord;
 }
