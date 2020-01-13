@@ -79,14 +79,20 @@ function checkAvgLength() {
     let text = textForCheck.value;
     if (text) {
         let temp = text.split(/[.,\/ -:;<>'"{}*\n]/).filter((el) => el);
+        if (temp.length !== 0) {
+            let avgWord = temp.reduce(
+                (accum, currentValue) => accum + currentValue.length, 0
+            ) / temp.length;
 
-        let avgWord = temp.reduce(
-            (accum, currentValue) => accum + currentValue.length, 0
-        ) / temp.length;
-
-        avgText.textContent = `Средняя длина слова: ${avgWord}`;
+            avgText.textContent = `Средняя длина слова: ${avgWord}`;
+            return avgWord;
+        } else {
+            avgText.textContent = 'Введенный текст должен содержать буквы.';
+            return false;
+        }
     } else {
         avgText.textContent = 'Введите текст в поле выше.';
+        return false;
     }
-    return avgWord;
+
 }
